@@ -27,21 +27,20 @@ const kittyPrompts = {
 
     // Return an array of just the names of kitties who are orange e.g.
     // ['Tiger', 'Snickers']
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+    const result = kitties.filter(kitty => kitty.color === 'orange');
+    return result.map(kitty => kitty.name);
 
     // Annotation:
-    // Write your annotation here as a comment
+    // First filter the array by finding the orange kitties, then returning a new array containing only the names
   },
 
   sortByAge() {
     // Sort the kitties by their age
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+    return kitties.sort((a, b) => b.age - a.age);
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Similar to the mdn sort page example function. The callback function compares values of the age property and puts higher values first.
   },
 
   growUp() {
@@ -58,11 +57,15 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+    const result = kitties.map(kitty => {
+      kitty.age += 2;
+      return kitty;
+    });
+    return result.sort((a, b) => b.age - a.age);
+
+    // go through the array and increment the age by 2, then return the whole object. Finally, sort the kitties by age
   }
 };
-
 
 
 
@@ -90,11 +93,14 @@ const clubPrompts = {
     //   ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = {};
+    
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // 1. For each object, iterate through the members
+    // 2. If the member element is a property of the result object, push the object's club into the result array
+    // 3. If the member element is not a property, make a new property and assign it an empty array
   }
 };
 
