@@ -96,7 +96,7 @@ const clubPrompts = {
     const result = {};
     clubs.forEach(club => {
       club.members.forEach(member => {
-        result.hasOwnProperty(member) ? 
+        result[member] ? 
           result[member].push(club.club) :
           result[member] = [club.club];
       });
@@ -224,8 +224,7 @@ const cakePrompts = {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    const result = cakes.reduce((acc, cake) => acc + cake.inStock, 0);
-    return result;
+    return cakes.reduce((acc, cake) => acc + cake.inStock, 0);
 
     // Annotation:
     // Write your annotation here as a comment
@@ -261,7 +260,14 @@ const cakePrompts = {
     //    ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = {};
+    cakes.forEach(cake => {
+      cake.toppings.forEach(topping => {
+        result[topping] ?
+          result[topping]++ :
+          result[topping] = 1;
+      });
+    });
     return result;
 
     // Annotation:
@@ -296,7 +302,7 @@ const classPrompts = {
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = '';
     return result;
 
     // Annotation:
