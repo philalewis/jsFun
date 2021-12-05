@@ -94,13 +94,19 @@ const clubPrompts = {
     // }
 
     const result = {};
-    
+    clubs.forEach(club => {
+      club.members.forEach(member => {
+        result.hasOwnProperty(member) ? 
+          result[member].push(club.club) :
+          result[member] = [club.club];
+      });
+    });
     return result;
 
     // Annotation:
     // 1. For each object, iterate through the members
     // 2. If the member element is a property of the result object, push the object's club into the result array
-    // 3. If the member element is not a property, make a new property and assign it an empty array
+    // 3. If the member element is not a property, make a new property and assign it an array with the value of the current object's club property
   }
 };
 
@@ -132,7 +138,13 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [];
+    mods.map(mod => {
+      result.push({
+        mod: mod.mod,
+        studentsPerInstructor: mod.students / mod.instructors
+      });
+    });
     return result;
 
     // Annotation:
@@ -167,7 +179,13 @@ const cakePrompts = {
     //    ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [];
+    cakes.map(cake => {
+      result.push({
+        flavor: cake.cakeFlavor,
+        inStock: cake.inStock
+      });
+    });
     return result;
 
     // Annotation:
@@ -195,7 +213,7 @@ const cakePrompts = {
     // ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.filter(cake => cake.inStock > 0);
     return result;
 
     // Annotation:
@@ -206,7 +224,7 @@ const cakePrompts = {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((acc, cake) => acc + cake.inStock, 0);
     return result;
 
     // Annotation:
@@ -218,7 +236,14 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [];
+    cakes.forEach(cake => {
+      cake.toppings.forEach(topping => {
+        !result.includes(topping) ?
+          result.push(topping) :
+          null;
+      });
+    }, []);
     return result;
 
     // Annotation:
