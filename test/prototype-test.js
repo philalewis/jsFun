@@ -295,7 +295,7 @@ describe("PROTOTYPES", () => {
         'Treasure Island'])
     });
 
-    it.only("getNewBooks", () => {
+    it("getNewBooks", () => {
       const e = bookPrompts.getNewBooks();
 
       expect(e).to.deep.equal([{
@@ -306,7 +306,7 @@ describe("PROTOTYPES", () => {
     })
   });
 
-  describe("Weather prompts", () => {
+  describe.only("Weather prompts", () => {
     it("getAverageTemps", () => {
       const e = weatherPrompts.getAverageTemps();
 
