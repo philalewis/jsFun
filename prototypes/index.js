@@ -62,7 +62,6 @@ const kittyPrompts = {
       return kitty;
     });
     return result.sort((a, b) => b.age - a.age);
-
     // go through the array and increment the age by 2, then return the whole object. Finally, sort the kitties by age
   }
 };
@@ -235,13 +234,13 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    const result = [];
-    cakes.forEach(cake => {
+    const result = cakes.reduce((acc, cake) => {
       cake.toppings.forEach(topping => {
-        !result.includes(topping) ?
-          result.push(topping) :
+        !acc.includes(topping) ?
+          acc.push(topping) :
           null;
       });
+      return acc;
     }, []);
     return result;
 
@@ -380,7 +379,15 @@ const bookPrompts = {
     //  { title: 'Life of Pi', year: 2001 },
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = books.reduce((acc, book) => {
+      book.published > 1989 ?
+        acc.push({
+          title: book.title,
+          year: book.published
+        }) :
+        null;
+      return acc;
+    }, []);
     return result;
 
     // Annotation:
