@@ -302,8 +302,7 @@ const classPrompts = {
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
 
-    const result = '';
-    return result;
+    return classrooms.filter(classroom => classroom.program === 'FE');
 
     // Annotation:
     // Write your annotation here as a comment
