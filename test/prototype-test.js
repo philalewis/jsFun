@@ -414,7 +414,7 @@ describe("PROTOTYPES", () => {
     })
   });
   
-  describe.only("Turing Prompts", () => {
+  describe("Turing Prompts", () => {
     it("studentsForEachInstructor", () => {
       const e = turingPrompts.studentsForEachInstructor();
 
@@ -459,7 +459,7 @@ describe("PROTOTYPES", () => {
       })
     });
     
-    it("modulesPerTeacher", () => {
+    it.only("modulesPerTeacher", () => {
       const e = turingPrompts.modulesPerTeacher();
 
       expect(e).to.deep.equal({

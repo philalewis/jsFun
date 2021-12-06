@@ -645,7 +645,10 @@ const turingPrompts = {
     //  { name: 'Robbie', studentCount: 18 }
     // ]
 
-    const result = '';
+    const result = instructors.reduce((acc, instructor) => {
+      acc.push({name: instructor.name, studentCount: cohorts[instructor.module - 1].studentCount});
+      return acc;
+    }, []);
     return result;
 
     // Annotation:
@@ -658,12 +661,21 @@ const turingPrompts = {
     // cohort1806: 9,
     // cohort1804: 10.5
     // }
-
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const teacherCount = instructors.reduce((acc, instructor) => {
+      acc[instructor.module]++;
+      return acc;
+    }, {[1]: 0, [2]: 0, [3]: 0, [4]: 0});
+    const result = cohorts.reduce((acc, cohort) => {
+      acc[`cohort${cohort.cohort}`] = 
+      cohort.studentCount / teacherCount[cohort.module];
+      return acc;
+    }, {});
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // First, get a teacher count for each module
+    // Return this as an object with mod numbers as keys and teacher count as values
+
   },
 
   modulesPerTeacher() {
