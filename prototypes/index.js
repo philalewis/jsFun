@@ -477,7 +477,12 @@ const nationalParksPrompts = {
     //   parksVisited: ["Rocky Mountain", "Acadia", "Zion"]
     //}
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = nationalParks.reduce((acc, park) => {
+      park.visited ?
+        acc.parksVisited.push(park.name) :
+        acc.parksToVisit.push(park.name);
+      return acc;
+    }, {parksToVisit: [], parksVisited: []});
     return result;
 
     // Annotation:
@@ -494,7 +499,10 @@ const nationalParksPrompts = {
     // { Florida: 'Everglades' } ]
 
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = nationalParks.reduce((acc, park) => {
+      acc.push({[park.location]: park.name});
+      return acc;
+    }, []);
     return result;
 
     // Annotation:
@@ -517,7 +525,14 @@ const nationalParksPrompts = {
     //   'backpacking',
     //   'rock climbing' ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = nationalParks.reduce((acc, park) => {
+      park.activities.forEach(activity => {
+        !acc.includes(activity) ?
+          acc.push(activity) :
+          null;
+      });
+      return acc;
+    }, []);
     return result;
 
     // Annotation:
@@ -544,7 +559,10 @@ const breweryPrompts = {
     // Return the total beer count of all beers for every brewery e.g.
     // 40
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.reduce((acc, brewery) => {
+      acc += brewery.beers.length;
+      return acc;
+    }, 0);
     return result;
 
     // Annotation:
@@ -560,7 +578,10 @@ const breweryPrompts = {
     // ...etc.
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.reduce((acc, brewery) => {
+      acc.push({name: brewery.name, beerCount: brewery.beers.length});
+      return acc;
+    }, []);
     return result;
 
     // Annotation:
@@ -572,8 +593,12 @@ const breweryPrompts = {
     // e.g.
     // { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+    const result = breweries.reduce((acc, brewery) => {
+      brewery.beers.forEach(beer => acc.push(beer));
+      return acc;
+    }, []);
+    result.sort((a, b) => b.abv - a.abv);
+    return result[0];
 
     // Annotation:
     // Write your annotation here as a comment
@@ -620,7 +645,7 @@ const turingPrompts = {
     //  { name: 'Robbie', studentCount: 18 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = '';
     return result;
 
     // Annotation:
