@@ -765,12 +765,26 @@ const bossPrompts = {
     //   { bossName: 'Ursula', sidekickLoyalty: 20 },
     //   { bossName: 'Scar', sidekickLoyalty: 16 }
     // ]
+    const bossNames = Object.keys(bosses);
+    const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1);
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = bossNames.reduce((acc, boss) => {
+      acc.push({
+        bossName: capitalize(boss),
+        sidekickLoyalty: sidekicks.reduce((sum, sidekick) => {
+          sidekick.boss === capitalize(boss) ?
+            sum += sidekick.loyaltyToBoss :
+            null;
+          return sum;
+        }, 0)
+      });
+      return acc;
+    }, []);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Need an array with 3 objects
+    // 
   }
 };
 
