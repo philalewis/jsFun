@@ -693,7 +693,18 @@ const turingPrompts = {
     //     Will: [1, 2, 3, 4]
     //   }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = instructors.reduce((acc, instructor) => {
+      acc[instructor.name] = cohorts.reduce((nums, cohort) => {
+        cohort.curriculum.forEach(skill => {
+          instructor.teaches.includes(skill) &&
+          !nums.includes(cohort.module) ?
+            nums.push(cohort.module) :
+            null;
+        });
+        return nums;
+      }, []);
+      return acc;
+    }, {});
     return result;
 
     // Annotation:
@@ -710,7 +721,17 @@ const turingPrompts = {
     //   recursion: [ 'Pam', 'Leta' ]
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = instructors.reduce((acc, instructor) => {
+      instructor.teaches.forEach(subject => {
+        !acc[subject] ?
+          acc[subject] = [instructor.name] :
+          !acc[subject].includes(instructor.name) ?
+            acc[subject].push(instructor.name) :
+            null;
+      });
+      return acc;
+    }, {});
+
     return result;
 
     // Annotation:
