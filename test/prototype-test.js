@@ -494,7 +494,7 @@ describe("PROTOTYPES", () => {
     })
   });
   
-  describe.only("Boss Prompts", () => {
+  describe("Boss Prompts", () => {
     it("bossLoyalty", () => {
       const e = bossPrompts.bossLoyalty();
 
@@ -511,7 +511,7 @@ describe("PROTOTYPES", () => {
     })
   });
   
-  describe("Astronomy Prompts", () => {
+  describe.only("Astronomy Prompts", () => {
     it("starsInConstellations", () => {
       const e = astronomyPrompts.starsInConstellations();
 

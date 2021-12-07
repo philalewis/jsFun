@@ -137,12 +137,11 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    const result = [];
-    mods.map(mod => {
-      result.push({
+    const result = mods.map(mod => {
+      return {
         mod: mod.mod,
         studentsPerInstructor: mod.students / mod.instructors
-      });
+      };
     });
     return result;
 
@@ -665,6 +664,7 @@ const turingPrompts = {
       acc[instructor.module]++;
       return acc;
     }, {[1]: 0, [2]: 0, [3]: 0, [4]: 0});
+
     const result = cohorts.reduce((acc, cohort) => {
       acc[`cohort${cohort.cohort}`] = 
       cohort.studentCount / teacherCount[cohort.module];
@@ -766,7 +766,7 @@ const bossPrompts = {
     //   { bossName: 'Scar', sidekickLoyalty: 16 }
     // ]
     const bossNames = Object.keys(bosses);
-    const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1);
+    const capitalize = word => word.charAt(0).toUpperCase() + word.slice(1);
 
     const result = bossNames.reduce((acc, boss) => {
       acc.push({
@@ -822,11 +822,19 @@ const astronomyPrompts = {
     //     color: 'red' }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const constellationNames = Object.keys(constellations);
+    const starList = constellationNames.reduce((acc, constellationName) => {
+      constellations[constellationName].stars.forEach(star => acc.push(star));
+      return acc;
+    }, []);
+
+    const result = stars.filter(star => starList.includes(star.name));
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We have an object of objects and an array of objeccts
+    // Iterate through the array of stars. Filter sounds like the best method
+    // Filter out each star where the name of the star is included in one of the constellations objects' stars array
   },
 
   starsByColor() {
