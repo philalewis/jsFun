@@ -848,7 +848,16 @@ const astronomyPrompts = {
     //   red: [{obj}]
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const starColors = stars.reduce((acc, star) => {
+      !acc[star.color] ? acc[star.color] = [] : null;
+      return acc;
+    }, {});
+
+    const result = stars.reduce((acc, star) => {
+      acc[star.color].push(star);
+      return acc;
+    }, starColors);
+
     return result;
 
     // Annotation:
@@ -870,7 +879,10 @@ const astronomyPrompts = {
     //    "The Little Dipper" ]
 
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = stars.reduce((acc, star) => {
+      star.constellation.length > 0 ? acc.push(star.constellation) : null;
+      return acc;
+    }, []);
     return result;
 
     // Annotation:
@@ -901,7 +913,7 @@ const ultimaPrompts = {
     // Return the sum of the amount of damage for all the weapons that our characters can use
     // Answer => 113
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = '';
     return result;
 
     // Annotation:
@@ -975,7 +987,7 @@ const dinosaurPrompts = {
         'Colin Trevorrow':
           {
             'Jurassic World': 56
-           },
+          },
         'J. A. Bayona':
           {
             'Jurassic World: Fallen Kingdom': 59
