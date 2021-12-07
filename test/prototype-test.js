@@ -614,7 +614,7 @@ describe("PROTOTYPES", () => {
     })
   });
   
-  describe.only("Ultima Prompts", () => {
+  describe("Ultima Prompts", () => {
     it("totalDamage", () => {
       const e = ultimaPrompts.totalDamage();
 
@@ -648,7 +648,7 @@ describe("PROTOTYPES", () => {
     })
   });
   
-  describe("Dinosaur Prompts", () => {
+  describe.only("Dinosaur Prompts", () => {
     it("countAwesomeDinosaurs", () => {
       const e = dinosaurPrompts.countAwesomeDinosaurs();
 
