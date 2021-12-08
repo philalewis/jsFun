@@ -878,11 +878,12 @@ const astronomyPrompts = {
     //    "Orion",
     //    "The Little Dipper" ]
 
-
-    const result = stars.reduce((acc, star) => {
+    const sortedStars = stars.sort((a, b) => a.visualMagnitude - b.visualMagnitude);
+    const result = sortedStars.reduce((acc, star) => {
       star.constellation.length > 0 ? acc.push(star.constellation) : null;
       return acc;
     }, []);
+    
     return result;
 
     // Annotation:
