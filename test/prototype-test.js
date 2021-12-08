@@ -607,7 +607,7 @@ describe("PROTOTYPES", () => {
       })
     });
     
-    it.only("constellationsStarsExistIn", () => {
+    it("constellationsStarsExistIn", () => {
       const e = astronomyPrompts.constellationsStarsExistIn();
 
       expect(e).to.deep.equal(["Canis Major", "Carina", "Boötes", "Auriga", "Orion", "Lyra", "Canis Minor", "The Plow", "Orion", "The Little Dipper"])
@@ -648,7 +648,7 @@ describe("PROTOTYPES", () => {
     })
   });
   
-  describe("Dinosaur Prompts", () => {
+  describe.only("Dinosaur Prompts", () => {
     it("countAwesomeDinosaurs", () => {
       const e = dinosaurPrompts.countAwesomeDinosaurs();
 

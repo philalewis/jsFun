@@ -1020,7 +1020,22 @@ const dinosaurPrompts = {
       }
     */
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const findAverageAge = (cast, yearReleased) => {
+      let totalAges = cast.reduce((sum, castMember) => {
+        sum += yearReleased - humans[castMember].yearBorn;
+        return sum;
+      }, 0);
+      return Math.floor(totalAges / cast.length);
+    };
+
+
+    const result = movies.reduce((acc, movie) => {
+      !acc[movie.director] ?
+        acc[movie.director] = {[movie.title]: findAverageAge(movie.cast, movie.yearReleased)} :
+        acc[movie.director][movie.title] = findAverageAge(movie.cast, movie.yearReleased);
+      return acc;
+    }, {});
+
     return result;
 
     // Annotation:
