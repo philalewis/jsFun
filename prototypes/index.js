@@ -1067,9 +1067,25 @@ const dinosaurPrompts = {
         imdbStarMeterRating: 0
       }]
     */
+    const humanNames = Object.keys(humans);
+    const castNames = movies.reduce((acc, movie) => {
+      movie.cast.forEach(member => acc.push(member));
+      return acc;
+    }, []);
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+    const result = humanNames.reduce((acc, human) => {
+      !castNames.includes(human) ? acc.push({
+        name: human,
+        nationality: humans[human].nationality,
+        imdbStarMeterRating: humans[human].imdbStarMeterRating
+      }) : null;
+
+      return acc;
+    }, []);
+
+    return result.sort((a, b) => {
+      return a.nationality < b.nationality ? -1 : b.nationality < a.nationality ? 1 : 0;
+    });
 
     // Annotation:
     // Write your annotation here as a comment
