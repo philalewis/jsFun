@@ -1106,12 +1106,43 @@ const dinosaurPrompts = {
       { name: 'Chris Pratt', ages: [ 36, 39 ] },
       { name: 'Bryce Dallas Howard', ages: [ 34, 37 ] } ]
     */
+    const movieCastNames = movies.reduce((acc, movie) => {
+      movie.cast.forEach(castMember => {
+        return !acc.includes(castMember) ? acc.push(castMember) : null;
+      });
+      return acc;
+    }, []);
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const humanNames = Object.keys(humans);
+
+    const result = movieCastNames.reduce((acc, castMember) => {
+      acc.push({
+        name: castMember,
+        ages: movies.reduce((ages, movie) => {
+          movie.cast.includes(castMember) ?
+            ages.push(movie.yearReleased - humans[castMember].yearBorn) : 
+            null;
+          return ages;
+        }, [])
+      });
+      return acc;
+    }, []);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+
+    // We want a new array of objects
+    // Each object should have two properties: name and ages
+    // Name should be the actor's name
+    // Ages should be an array of the ages each actor was when the movie was shot
+
+    // Iterate through the movies
+    // Iterate through the cast of each movie
+    // For each actor, if there is already an object in our answer array with the same name, add a new age. This will require yet another iteration
+
+    // acc.includes()
+
+    // If no object, make a new one and push into the acc.
   }
 };
 

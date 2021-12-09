@@ -648,7 +648,7 @@ describe("PROTOTYPES", () => {
     })
   });
   
-  describe.only("Dinosaur Prompts", () => {
+  describe("Dinosaur Prompts", () => {
     it("countAwesomeDinosaurs", () => {
       const e = dinosaurPrompts.countAwesomeDinosaurs();
 
