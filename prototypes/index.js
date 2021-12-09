@@ -1113,8 +1113,6 @@ const dinosaurPrompts = {
       return acc;
     }, []);
 
-    const humanNames = Object.keys(humans);
-
     const result = movieCastNames.reduce((acc, castMember) => {
       acc.push({
         name: castMember,
